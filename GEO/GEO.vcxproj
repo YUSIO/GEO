@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\GEO.ico" />
+    <Image Include="res\radio.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
