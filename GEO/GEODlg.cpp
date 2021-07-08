@@ -194,15 +194,49 @@ void CGEODlg::OnBnClickedButton1()
 		angle2 =atan(abs(tan(theta_phi)) / sin(theta_theta)) * (180 / PI);
 	if (theta1 > 0)
 	{
-		if (theta_phi >0)
-			angle2 = 180 - angle2;
-		else if (theta_phi <= 0)
-			angle2 = 180 + angle2;
+		if (phi1 * phi2 > 0)
+		{
+			if (phi2 > phi1)
+			{
+				angle2 = 180 - angle2;
+			}
+			else if (phi2 < phi1)
+			{
+				angle2 = 180 + angle2;
+			}
+		}
+		else if (phi1 * phi2 < 0)
+		{
+			if (abs(phi1) + abs(phi2) <180)
+			{
+				angle2 = phi1 > 0 ? 180 + angle2 : 180 - angle2;
+			}
+			else if (abs(phi1) + abs(phi2) > 180)
+			{
+				angle2 = phi1 > 0 ? 180 - angle2 : 180 + angle2;
+			}
+		}
 	}
 	if (theta1 < 0)
 	{
-		if (theta_phi < 0)
-			angle2 = 360 - angle2;
+		if (phi1 * phi2 > 0)
+		{
+			if (phi2 < phi1)
+			{
+				angle2 = 360- angle2;
+			}
+		}
+		else if (phi1 * phi2 < 0)
+		{
+			if (abs(phi1) + abs(phi2) < 180)
+			{
+				angle2 = phi1 > 0 ? 360- angle2 : angle2;
+			}
+			else if (abs(phi1) + abs(phi2) > 180)
+			{
+				angle2 = phi1 > 0 ? angle2 : 360 - angle2;
+			}
+		}
 	}
 	double Dis = sqrt(pow(R, 2) + pow(R + h, 2) - 2 * R * (R + h) * cos(theta_theta) * cos(theta_phi));
 	double time = Dis / 300000000.0;
